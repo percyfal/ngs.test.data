@@ -1,0 +1,30 @@
+numreads: 50000
+1000g:
+  individual: NA21137
+  bam_ext: chrom11.ILLUMINA.bwa.GIH.exome.20111114.bam
+  curlfilesize: 30000000
+genomes:
+  dir: data/genomes
+  hg19: 
+    species: Hsapiens
+    label: Human (hg19)
+    dbsnp: 
+      vcf: dbsnp132_chr11.vcf
+      retmax: 8000
+      term: '"Homo sapiens"[Organism] AND (11[CHR] AND (1[CHRPOS] : 2000000[CHRPOS])'
+      start: 4000
+      delta: 200
+      buildid: 132
+  phix: 
+    species: phix
+    label: phiX174
+illumina:
+  dir: data/production
+  flowcells:
+    C003CCCXX:
+      fc_id: C003CCCXX
+      fc_fullname: 120924_SN0002_0003_AC003CCCXX
+    B002BBBXX:
+      fc_id: B002BBBXX
+      fc_fullname: 121015_SN0001_0002_BB002BBBXX
+      
