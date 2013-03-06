@@ -1,7 +1,7 @@
 numreads: 50000
 1000g:
   individual: NA21137
-  bam_ext: chrom11.ILLUMINA.bwa.GIH.exome.20111114.bam
+  bam_ext: chrom11.ILLUMINA.bwa.GIH.exome.20120522.bam
   curlfilesize: 30000000
 genomes:
   dir: data/genomes
