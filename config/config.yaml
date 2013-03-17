@@ -15,9 +15,21 @@ genomes:
       start: 4000
       delta: 200
       buildid: 132
+    seqcap:
+      chr11:
+        targets: 
+        - 75600,75900
+        baits:
+        - 75600, 75720
+        - 75700, 75820
+        - 75780, 75900
+        header: 
+        - "@HD	VN:1.0	SO:coordinate"
+        - "@SQ	SN:chr11	LN:2000000"
   phix: 
     species: phix
     label: phiX174
+
 illumina:
   dir: data/production
   flowcells:

@@ -3,6 +3,7 @@ import subprocess
 import logbook
 import yaml
 import gzip
+import cStringIO
 from Bio import SeqIO
 from Bio import Entrez
 from Bio.SeqRecord import SeqRecord
@@ -43,6 +44,28 @@ def install_phix(index_files):
             pass
     index_files = _index_seq_files(index_files, fn, build)
     return index_files
+
+def install_seqcap_targets(build, chr):
+    LOG.info("Installing target and bait files for genome build {}, chr {}".format(build, chr))
+    seqcap = genomes[build]["seqcap"][chr]
+    targets = cStringIO.StringIO()
+    targets.write("\n".join(seqcap["header"]))
+    targets.write("\n")
+    targets.write("\n".join(["{0}\t{1}\t{2}\t+\tTARGET_{3}".format(chr, x.split(",")[0].lstrip(), x.split(",")[1].lstrip(), x.split(",")[0].lstrip()) for x in seqcap["targets"]]))
+    targets.write("\n")
+    baits = cStringIO.StringIO()
+    baits.write("\n".join(seqcap["header"]))
+    baits.write("\n")
+    baits.write("\n".join(["{0}\t{1}\t{2}\t+\tBAIT_{3}".format(chr, x.split(",")[0].lstrip(), x.split(",")[1].lstrip(), x.split(",")[0].lstrip()) for x in seqcap["baits"]]))
+    baits.write("\n")
+    seqcapdir = os.path.join(os.path.abspath(os.curdir), genomes['dir'], genomes[build]['species'], build, "seqcap")
+    if not os.path.exists(seqcapdir):
+        LOG.info("Creating {}".format(seqcapdir))
+        os.makedirs(seqcapdir)
+    with open(os.path.join(seqcapdir, "{}_targets.interval_list".format(chr)), "w") as fh:
+        fh.write(targets.getvalue())
+    with open(os.path.join(seqcapdir, "{}_baits.interval_list".format(chr)), "w") as fh:
+        fh.write(baits.getvalue())
 
 def install_ucsc_genome(index_files, build, chr, start=None, end=None):
     LOG.info("Installing genome build {}, chr {}".format(build, chr))

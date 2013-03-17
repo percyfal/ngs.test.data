@@ -5,7 +5,7 @@ from cStringIO import StringIO
 
 from ngstestdata.thousandg import install_1000g_test_data
 from ngstestdata.fastq import convert_bam_to_fastq
-from ngstestdata.genomes import install_ucsc_genome, install_phix
+from ngstestdata.genomes import install_ucsc_genome, install_phix, install_seqcap_targets
 from ngstestdata.variantdata import install_dbsnp_entrez, install_training_data
 from ngstestdata.align import install_index_files
 from ngstestdata.illumina import install_casava_project_files
@@ -13,7 +13,7 @@ from ngstestdata.illumina import install_casava_project_files
 from setuptools import setup, find_packages
 
 setup(name = "ngstestdata",
-      version = "0.1",
+      version = "0.1.1",
       author = "Per Unneberg",
       author_email = "punneberg@gmail.com",
       description = "download test data sets for ngs analysis",
@@ -53,10 +53,11 @@ def post_setup():
     install_ucsc_genome(index_files, build="hg19", chr="chr11", start=0, end=2000000)
     install_index_files(index_files)
 
+    # seqcap targets and baits
+    install_seqcap_targets(build="hg19", chr="chr11")
+
     # variant data
     install_dbsnp_entrez()
     (omni_out, hapmap_out, mills_out) = install_training_data()
-
-    
 
 post_setup()
