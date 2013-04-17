@@ -13,7 +13,7 @@ from ngstestdata.illumina import install_casava_project_files
 from setuptools import setup, find_packages
 
 setup(name = "ngstestdata",
-      version = "0.1.1",
+      version = "0.1.2",
       author = "Per Unneberg",
       author_email = "punneberg@gmail.com",
       description = "download test data sets for ngs analysis",
@@ -22,7 +22,9 @@ setup(name = "ngstestdata",
       scripts = [],
       install_requires = [
           "PyYAML >= 3.09",
-          "fabric >= 1.1.1"]
+          "fabric >= 1.1.1",
+          "biopython",
+          "logbook"]
       )
 
 
