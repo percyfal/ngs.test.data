@@ -10,7 +10,7 @@ def _index_bwa(fn, label="bwa"):
     outdir = os.path.join(os.path.dirname(fn), os.pardir,label)
     if not os.path.exists(outdir):
         os.makedirs(outdir)
-    if not os.path.exists(os.path.join(outdir, os.path.basename(fn))):
+    if not os.path.lexists(os.path.join(outdir, os.path.basename(fn))):
         os.symlink(fn, os.path.join(outdir, os.path.basename(fn)))
     if os.path.exists(os.path.join(outdir,"{}.amb".format( os.path.basename(fn)))):
         LOG.info("{} exists; not doing anything".format(fn))
@@ -26,7 +26,7 @@ def _index_bowtie(fn, label="bowtie"):
     outdir = os.path.join(os.path.dirname(fn), os.pardir, label)
     if not os.path.exists(outdir):
         os.makedirs(outdir)
-    if not os.path.exists(os.path.join(outdir, os.path.basename(fn))):
+    if not os.path.lexists(os.path.join(outdir, os.path.basename(fn))):
         os.symlink(fn, os.path.join(outdir, os.path.basename(fn)))
     if os.path.exists(os.path.join(outdir,"{}.1.ebwt".format( os.path.splitext(os.path.basename(fn))[0]))):
         LOG.info("{} exists; not doing anything".format(fn))
