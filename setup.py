@@ -13,7 +13,7 @@ from ngstestdata.illumina import install_casava_project_files
 from setuptools import setup, find_packages
 
 setup(name = "ngstestdata",
-      version = "0.1.3",
+      version = "0.1.4",
       author = "Per Unneberg",
       author_email = "punneberg@gmail.com",
       description = "download test data sets for ngs analysis",
