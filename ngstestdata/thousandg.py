@@ -2,9 +2,9 @@ import os
 import sys
 import re
 import subprocess
-import logging
+import logbook
 
-LOG = logging.Logger(__name__)
+LOG = logbook.Logger(__name__)
 
 def install_1000g_test_data(individual, bam_ext, destdir, curlfilesize, **kw):
     """Download 1000 genomes exome data in bam format
